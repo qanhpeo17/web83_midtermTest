@@ -1,5 +1,5 @@
 import { Router } from "express";
-import infoController from "../controller/info.controller";
+import infoController from "../controller/info.controller.js";
 const infoRouter = Router();
 
 infoRouter.post("/create-update-info", infoController.createInfo);

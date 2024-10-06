@@ -1,4 +1,4 @@
-import UserModel from "../model/user.model.js";
+import UserModel from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
@@ -55,8 +55,7 @@ const login = async (req, res) => {
         error: "Invalid credentials",
       });
     }
-    console.log(process.env.SECRET_KEY);
-    console.log(process.env.REFRESH_TOKEN);
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(400).json({

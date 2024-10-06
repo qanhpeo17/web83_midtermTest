@@ -1,5 +1,4 @@
-import { mongo } from "mongoose";
-import UserModel from "../model/user.model.js";
+import UserModel from "../models/user.model.js";
 import ProfileModel from "../models/profile.model.js";
 export const createInfo = async (req, res) => {
   try {
@@ -7,7 +6,7 @@ export const createInfo = async (req, res) => {
     const newProfile = await ProfileModel.create(inputedData);
     const user = req.user;
 
-    await User.findByIdAndUpdate(user._id, { profile: newProfile._id });
+    await UserModel.findByIdAndUpdate(user._id, { profile: newProfile._id });
     res.status(201).json({ message: "Thanh cong", newProfile });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -33,7 +32,7 @@ const updateInfo = async (req, res) => {
       return res.status(400).json({ message: "Thieu thong tin" });
     }
     const user = req.user;
-    const userExists = await User.findById(user._id);
+    const userExists = await UserModel.findById(user._id);
     if (!userExists || !userExists.profile.equals(profileId)) {
       return res.status(403).json({ message: "Ban ko co quyen" });
     }
@@ -60,7 +59,7 @@ const deleteInfo = async (req, res) => {
       return res.status(400).json({ message: "Thieu thong tin" });
     }
     const user = req.user;
-    const userExists = await User.findById(user._id);
+    const userExists = await UserModel.findById(user._id);
     if (!userExists || !userExists.profile.equals(profileId)) {
       return res.status(403).json({
         message: "Ban ko co quyen",
