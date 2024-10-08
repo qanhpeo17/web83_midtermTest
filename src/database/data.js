@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
-const DB_CONNECTION = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@web83ls4.dcjca.mongodb.net/?retryWrites=true&w=majority&appName=web83ls4/web83`;
+const DB_CONNECTION = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@web83ls4.dcjca.mongodb.net/?retryWrites=true&w=majority&appName=web83ls4/midterm_test`;
 
 const connectDatabase = async () => {
   try {
